@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ImperiumMaximus/advent-readme-stars@v1
+      - uses: ImperiumMaximus/advent-readme-stars@HEAD
         with:
           leaderboardId: 1009052
           userId: 1501450
