@@ -1,12 +1,1 @@
-const input = require('fs').readFileSync(require('path').join(__dirname, 'input.txt')).toString().split('\n')
-const { position, depth } = input.reduce((acc, command) => { 
-	const tokens = command.split(' ');
-	if (tokens[0] === 'forward') {
-		acc.position += Number(tokens[1]);
-	} else {
-		acc.depth += (tokens[0] === 'down' ? 1 : -1) * Number(tokens[1]);
-	}
-	return acc;
-}, { position: 0, depth: 0 });
-
-console.log(position * depth);
+console.log(require('fs').readFileSync(require('path').join(__dirname, 'input.txt')).toString().split('\n').reduce((acc, command) => [acc[0] + ((tokens = command.split(' '))[0] === 'forward' ? Number(tokens[1]) : 0), acc[1] + ((tokens[0] === 'down' ? Number(tokens[1]) : tokens[0] === 'up' ? -Number(tokens[1]) : 0))], [0, 0]).reduce((acc, c) => acc * c));
