@@ -1,3 +1,1 @@
-const input = require('fs').readFileSync(require('path').join(__dirname, 'input.txt')).toString().split('\n').map(b => b.split(''));
-
-console.log(Array.from(Array(input[0].length).keys()).map(i => input.reduce((acc, n) => [acc[0] + Number(n[i]), acc[1] + Number(!Number(n[i]))], [0, 0])).reduce((acc, d) => [acc[0] + Number(d[0] > d[1]).toString(), acc[1] + Number(d[1] > d[0]).toString()], ['', '']).reduce((acc, n) => acc * parseInt(n, 2), 1));
+console.log(Array.from(Array((input = require('fs').readFileSync(require('path').join(__dirname, 'input.txt')).toString().split('\n').map(b => b.split('')))[0].length).keys()).map(i => input.reduce((acc, n) => [acc[0] + Number(n[i]), acc[1] + Number(!Number(n[i]))], [0, 0])).reduce((acc, d) => [acc[0] + Number(d[0] > d[1]).toString(), acc[1] + Number(d[1] > d[0]).toString()], ['', '']).reduce((acc, n) => acc * parseInt(n, 2), 1));
