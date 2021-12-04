@@ -30,7 +30,6 @@ while (i < numbers.length) {
                 foundMap[j][k][idx] = 1;
                 foundMapTransposed[j][idx][k] = 1;
                 if (foundMap[j][k].reduce((acc, b) => acc + b) === foundMap[j].length || foundMapTransposed[j][idx].reduce((acc, b) => acc + b) === foundMapTransposed[j].length) {
-                    boardIndex = j;
                     lastNumber = numbers[i];
                 }
             }
