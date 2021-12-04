@@ -23,15 +23,12 @@ i = 0;
 let lastNumber = 0;
 let lastBoard = [];
 let lastFoundMap = [];
-while (i < numbers.length) {
+while (boards.length && i < numbers.length) {
     boards.forEach((board, j) => {
         board.forEach((row, k) => {
             if ((idx = row.findIndex(n => n === numbers[i])) >= 0) {
                 foundMap[j][k][idx] = 1;
                 foundMapTransposed[j][idx][k] = 1;
-                if (foundMap[j][k].reduce((acc, b) => acc + b) === foundMap[j].length || foundMapTransposed[j][idx].reduce((acc, b) => acc + b) === foundMapTransposed[j].length) {
-                    lastNumber = numbers[i];
-                }
             }
         });
     });
@@ -39,11 +36,14 @@ while (i < numbers.length) {
     for (let j = 0; j < foundMap.length; j++) {
         const fMap = foundMap[j];
         const fMapTransposed = foundMapTransposed[j];
+        let bI = j;
         for (let k = 0; boards.length && k < fMap.length; k++) {
             if(fMap[k].reduce((acc, b) => acc + b) === fMap[k].length || fMapTransposed[k].reduce((acc, b) => acc + b) === fMapTransposed[k].length) {
-                lastBoard = boards.splice(j, 1);
-                lastFoundMap = foundMap.splice(j, 1);
-                foundMapTransposed.splice(j, 1);
+                lastNumber = numbers[i];
+                lastBoard = boards.splice(bI, 1);
+                lastFoundMap = foundMap.splice(bI, 1);
+                foundMapTransposed.splice(bI, 1);
+                j -= j > 0 ? 1 : 0;
             }
         }
     }
