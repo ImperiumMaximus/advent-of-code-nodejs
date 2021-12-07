@@ -2,7 +2,7 @@ let input = require('fs').readFileSync(require('path').join(__dirname, 'input.tx
 let prevX, x = Math.min(...input);
 let prevY = input.reduce((acc, n) => acc + ((n === x) ? 0 : -(((n - x) * Math.abs(n + 1 - x)) / (2 * Math.abs(n - x)))) + (((n + 1) === x) ? 0 : -((((n + 1 - x) * Math.abs(n - x)) / (2 * Math.abs(n + 1 - x))))), 0);
 let horPos;
-for (x = Math.min(...input) + 1; x <= Math.max(...input); x += 0.1) {
+for (x = Math.min(...input) + 1; x <= Math.max(...input); x++) {
     let y = input.reduce((acc, n) => acc + ((n === x) ? 0 : -(((n - x) * Math.abs(n + 1 - x)) / (2 * Math.abs(n - x)))) + (((n + 1) === x) ? 0 : -((((n + 1 - x) * Math.abs(n - x)) / (2 * Math.abs(n + 1 - x))))), 0);
     if (y === 0) {
         horPos = parseInt(x);
