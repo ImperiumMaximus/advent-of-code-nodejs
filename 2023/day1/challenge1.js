@@ -1,0 +1,1 @@
+console.log(require('fs').readFileSync(require('path').join(__dirname, 'input.txt')).toString().split('\n').map(r => r.split('').filter(c => c.match(/[0-9]/i))).map(d => Number([d[0], d[d.length - 1]].join(''))).reduce((acc, n) => acc + n, 0));
