@@ -1,17 +1,1 @@
-const input = require('fs').readFileSync(require('path').join(__dirname, 'input.txt')).toString().split('\n');
-
-const numCards = input.map(_ => 1);
-
-input.map((g, i) => {
-    const numbers = g.split(':')[1].split('|');
-    const winningNumbers = numbers[0].trim().match(/[0-9]+/gi).map(Number);
-    const scratchedNumbers = numbers[1].trim().match(/[0-9]+/gi).map(Number);
-
-    const numMatches = scratchedNumbers.reduce((acc, n) => winningNumbers.includes(n) ? ++acc : acc, 0);
-
-    for (let j = i + 1; j < i + numMatches + 1; j++) {
-        numCards[j] += numCards[i];
-    }
-});
-
-console.log(numCards.reduce((acc, n) => acc + n));
+console.log([Array(require('fs').readFileSync(require('path').join(__dirname, 'input.txt')).toString().split('\n').length).fill(1), require('fs').readFileSync(require('path').join(__dirname, 'input.txt')).toString().split('\n')].reduce((numCards, input) => input.reduce((acc, g, i) => Array.from({length: [g.split(':')[1].split('|')[0].trim().match(/[0-9]+/gi).map(Number), g.split(':')[1].split('|')[1].trim().match(/[0-9]+/gi).map(Number)].reduce((w, s) => s.reduce((acc, n) => w.includes(n) ? ++acc : acc, 0))}, (_, n) => i + n + 1).reduce((_, b) => acc.splice(b, 1, acc[b] + acc[i]) && acc, acc), numCards)).reduce((acc, n) => acc + n));
